@@ -33,7 +33,7 @@ struct DictionaryKeyedDecodingContainer<K: CodingKey>: KeyedDecodingContainerPro
                 [String: Any].self,
                 .init(
                     codingPath: codingPath + [key],
-                    debugDescription: "Expected nested dictionary at key \(key.stringValue)"
+                    debugDescription: "Expected nested dictionary at key \(key.stringValue). Got: \(type(of: value))"
                 )
             )
         }
@@ -64,7 +64,7 @@ struct DictionaryKeyedDecodingContainer<K: CodingKey>: KeyedDecodingContainerPro
                 [Any].self,
                 .init(
                     codingPath: codingPath + [key],
-                    debugDescription: "Expected array at key \(key.stringValue)"
+                    debugDescription: "Expected array at key \(key.stringValue). Got: \(type(of: value))"
                 )
             )
         }

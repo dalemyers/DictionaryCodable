@@ -22,7 +22,7 @@ final class _DictionaryDecoder: Decoder {
         guard let dict = storage as? [String: Any] else {
             throw DecodingError.typeMismatch(
                 [String: Any].self,
-                .init(codingPath: codingPath, debugDescription: "Expected dictionary")
+                .init(codingPath: codingPath, debugDescription: "Expected dictionary but got: \(type(of: storage))")
             )
         }
         let container = DictionaryKeyedDecodingContainer<Key>(decoder: self, storage: dict)
@@ -33,7 +33,7 @@ final class _DictionaryDecoder: Decoder {
         guard let array = storage as? [Any] else {
             throw DecodingError.typeMismatch(
                 [Any].self,
-                .init(codingPath: codingPath, debugDescription: "Expected array")
+                .init(codingPath: codingPath, debugDescription: "Expected array but got: \(type(of: storage))")
             )
         }
         return DictionaryUnkeyedDecodingContainer(decoder: self, storage: array)

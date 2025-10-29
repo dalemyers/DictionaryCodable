@@ -34,7 +34,7 @@ struct DictionaryUnkeyedDecodingContainer: UnkeyedDecodingContainer {
                 [String: Any].self,
                 .init(
                     codingPath: codingPath,
-                    debugDescription: "Expected dictionary for nested container"
+                    debugDescription: "Expected dictionary for nested container. Got: \(type(of: value))"
                 )
             )
         }
@@ -66,7 +66,7 @@ struct DictionaryUnkeyedDecodingContainer: UnkeyedDecodingContainer {
                 [Any].self,
                 .init(
                     codingPath: codingPath,
-                    debugDescription: "Expected array for nested unkeyed container"
+                    debugDescription: "Expected array for nested unkeyed container. Got: \(type(of: value))"
                 )
             )
         }

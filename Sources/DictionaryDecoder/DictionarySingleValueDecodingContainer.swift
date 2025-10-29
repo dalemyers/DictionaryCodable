@@ -63,7 +63,7 @@ struct DictionarySingleValueDecodingContainer: SingleValueDecodingContainer {
             type,
             .init(
                 codingPath: codingPath,
-                debugDescription: "Cannot convert \(type) from stored value of type \(Swift.type(of: storage))"
+                debugDescription: "Cannot convert \(type) from stored value of type \(Swift.type(of: storage)). Got: \(type)"
             )
         )
     }

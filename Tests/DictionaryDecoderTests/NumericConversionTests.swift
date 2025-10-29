@@ -174,18 +174,17 @@ import Testing
         init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             let singleContainer = try container.superDecoder(forKey: .data).singleValueContainer()
-
-            // Decode the string and convert to Data
-            if let str = try? singleContainer.decode(String.self),
-               let decoded = Data(base64Encoded: str)
-            {
-                data = decoded
-            } else {
+            
+            let str = try singleContainer.decode(String.self)
+            
+            guard let decoded = Data(base64Encoded: str) else {
                 throw DecodingError.typeMismatch(
                     Data.self,
-                    .init(codingPath: decoder.codingPath, debugDescription: "Could not decode Data from base64 string")
+                    .init(codingPath: decoder.codingPath, debugDescription: "Could not decode Data from base64 string. Got: \(str)")
                 )
             }
+            
+            data = decoded
         }
     }
 
