@@ -7,13 +7,13 @@
 
 import Foundation
 
-public final class DictionaryDecoder {
+public final class DictionaryCoder {
     public init() {}
-    
+
     public var userInfo: [CodingUserInfoKey: Any] = [:]
-    
-    public func decode<T: Decodable>(_ type: T.Type, from dictionary: [String: Any]) throws -> T {
-        let decoder = _DictionaryDecoder(storage: dictionary, userInfo: userInfo)
+
+    public func decode<T: Decodable>(_: T.Type, from dictionary: [String: Any]) throws -> T {
+        let decoder = _DictionaryCoder(storage: dictionary, userInfo: userInfo)
         return try T(from: decoder)
     }
 }

@@ -1,0 +1,37 @@
+# SwiftFormat configuration (Nick Lockwood version)
+
+# File options
+--exclude .build,.swiftpm,coverage_html,coverage_report
+
+# Swift version
+--swiftversion 6.0.2
+
+# Format options
+--indent 4
+--indentcase false
+--trimwhitespace always
+--linebreaks lf
+--commas always
+--trailingcommas always
+--decimalgrouping 3,6
+--exponentcase lowercase
+--fractiongrouping disabled
+--hexgrouping 4,8
+--hexliteralcase uppercase
+--octalgrouping 4,8
+--patternlet hoist
+--self remove
+--semicolons inline
+--stripunusedargs always
+--wraparguments before-first
+--wrapparameters before-first
+--wrapcollections before-first
+--closingparen balanced
+--maxwidth 120
+
+# Rules
+--enable isEmpty
+--enable sortImports
+--enable redundantReturn
+--enable redundantSelf
+--enable trailingClosures

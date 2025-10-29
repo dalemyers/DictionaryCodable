@@ -1,5 +1,5 @@
 //
-//  DictionaryDecoder.swift
+//  DictionarySingleValueDecodingContainer.swift
 //  PicklePro
 //
 //  Created by Dale Myers on 28/10/2025.
@@ -7,13 +7,13 @@
 
 import Foundation
 
-internal struct DictionarySingleValueDecodingContainer: SingleValueDecodingContainer {
-    let decoder: _DictionaryDecoder
+struct DictionarySingleValueDecodingContainer: SingleValueDecodingContainer {
+    let decoder: _DictionaryCoder
     let storage: Any
     var codingPath: [CodingKey] { decoder.codingPath }
 
     func decodeNil() -> Bool {
-        return storage is NSNull
+        storage is NSNull
     }
 
     func decode<T: Decodable>(_ type: T.Type) throws -> T {
@@ -41,10 +41,10 @@ internal struct DictionarySingleValueDecodingContainer: SingleValueDecodingConta
             }
             if T.self == Bool.self {
                 let lower = str.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
-                if ["true","1","yes","y"].contains(lower) {
+                if ["true", "1", "yes", "y"].contains(lower) {
                     return true as! T
                 }
-                if ["false","0","no","n"].contains(lower) {
+                if ["false", "0", "no", "n"].contains(lower) {
                     return false as! T
                 }
             }
@@ -61,7 +61,10 @@ internal struct DictionarySingleValueDecodingContainer: SingleValueDecodingConta
         // 4) Nothing matched — throw descriptive error
         throw DecodingError.typeMismatch(
             type,
-            .init(codingPath: codingPath, debugDescription: "Cannot convert \(type) from stored value of type \(Swift.type(of: storage))")
+            .init(
+                codingPath: codingPath,
+                debugDescription: "Cannot convert \(type) from stored value of type \(Swift.type(of: storage))"
+            )
         )
     }
 }

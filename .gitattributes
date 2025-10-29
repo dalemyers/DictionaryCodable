@@ -1,0 +1,7 @@
+* text=auto
+*.swift text
+*.yml text
+*.yaml text
+*.md text
+*.sh text eol=lf
+*.json text

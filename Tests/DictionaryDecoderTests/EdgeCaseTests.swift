@@ -1,42 +1,42 @@
-import Testing
+@testable import DictionaryCoder
 import Foundation
-@testable import DictionaryDecoder
+import Testing
 
 // MARK: - Edge Cases and Advanced Features
 
-@Test func testEmptyDictionary() throws {
+@Test func emptyDictionary() throws {
     struct EmptyModel: Codable {}
-    
-    let decoder = DictionaryDecoder()
+
+    let decoder = DictionaryCoder()
     let dict: [String: Any] = [:]
-    
+
     _ = try decoder.decode(EmptyModel.self, from: dict)
 }
 
-@Test func testEmptyArray() throws {
+@Test func emptyArray() throws {
     struct ArrayModel: Codable {
         let items: [String]
         let numbers: [Int]
     }
-    
-    let decoder = DictionaryDecoder()
+
+    let decoder = DictionaryCoder()
     let dict: [String: Any] = [
         "items": [],
-        "numbers": []
+        "numbers": [],
     ]
-    
+
     let result = try decoder.decode(ArrayModel.self, from: dict)
     #expect(result.items.isEmpty)
     #expect(result.numbers.isEmpty)
 }
 
-@Test func testMixedTypes() throws {
+@Test func mixedTypes() throws {
     struct SimpleModel: Codable {
         let name: String
         let age: Int
         let isActive: Bool
     }
-    
+
     struct MixedTypesModel: Codable {
         let text: String
         let number: Int
@@ -44,8 +44,8 @@ import Foundation
         let nested: SimpleModel
         let array: [Int]
     }
-    
-    let decoder = DictionaryDecoder()
+
+    let decoder = DictionaryCoder()
     let dict: [String: Any] = [
         "text": "Hello",
         "number": 42,
@@ -53,11 +53,11 @@ import Foundation
         "nested": [
             "name": "Nested",
             "age": 25,
-            "isActive": false
+            "isActive": false,
         ],
-        "array": [1, 2, 3]
+        "array": [1, 2, 3],
     ]
-    
+
     let result = try decoder.decode(MixedTypesModel.self, from: dict)
     #expect(result.text == "Hello")
     #expect(result.number == 42)
@@ -69,18 +69,18 @@ import Foundation
 @Test func testUserInfo() throws {
     struct TestModel: Decodable {
         let customValue: String
-        
+
         init(from decoder: Decoder) throws {
             guard let custom = decoder.userInfo[CodingUserInfoKey(rawValue: "customKey")!] as? String else {
                 throw DecodingError.dataCorrupted(.init(codingPath: [], debugDescription: "Missing user info"))
             }
-            self.customValue = custom
+            customValue = custom
         }
     }
-    
-    let decoder = DictionaryDecoder()
+
+    let decoder = DictionaryCoder()
     decoder.userInfo[CodingUserInfoKey(rawValue: "customKey")!] = "customValue"
-    
+
     let dict: [String: Any] = [:]
     let result = try decoder.decode(TestModel.self, from: dict)
     #expect(result.customValue == "customValue")

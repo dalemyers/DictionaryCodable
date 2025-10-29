@@ -42,7 +42,7 @@ echo ""
 # Step 3: Find required files
 echo -e "${YELLOW}[3/4] Locating coverage data...${NC}"
 
-XCTEST_PATH=".build/$PLATFORM/debug/DictionaryDecoderPackageTests.xctest/Contents/MacOS/DictionaryDecoderPackageTests"
+XCTEST_PATH=".build/$PLATFORM/debug/DictionaryCoderPackageTests.xctest/Contents/MacOS/DictionaryCoderPackageTests"
 PROFDATA_PATH=".build/$PLATFORM/debug/codecov/default.profdata"
 
 if [ ! -f "$XCTEST_PATH" ]; then
