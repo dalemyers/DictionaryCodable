@@ -19,7 +19,7 @@ import Testing
         let float: Float
     }
 
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
     let dict: [String: Any] = [
         "int8": Int8(127),
         "int16": Int16(32767),
@@ -63,7 +63,7 @@ import Testing
         let float: Float
     }
 
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
     let dict: [String: Any] = [
         "int8": NSNumber(value: 100),
         "int16": NSNumber(value: 1000),
@@ -100,7 +100,7 @@ import Testing
         let boolFromNumber: Bool
     }
 
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
     let dict: [String: Any] = [
         "intFromNumber": NSNumber(value: 42),
         "doubleFromNumber": NSNumber(value: 3.14),
@@ -123,7 +123,7 @@ import Testing
         let stringBool: Bool
     }
 
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
     let dict: [String: Any] = [
         "stringInt": "42",
         "stringDouble": "3.14",
@@ -139,7 +139,7 @@ import Testing
 }
 
 @Test func stringToBoolConversions() throws {
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
 
     // Test true variations
     for trueValue in ["true", "1", "yes", "y", "TRUE", "Yes", " true ", " 1 "] {
@@ -189,7 +189,7 @@ import Testing
         }
     }
 
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
     let testString = "Hello, World!"
     let base64 = testString.data(using: .utf8)!.base64EncodedString()
 
@@ -205,7 +205,7 @@ import Testing
         let data: Data
     }
 
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
     let testData = "Test Data".data(using: .utf8)!
 
     let dict: [String: Any] = ["data": testData]
@@ -239,7 +239,7 @@ import Testing
         }
     }
 
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
     let dict: [String: Any] = ["url": "https://www.example.com"]
 
     let result = try decoder.decode(URLWrapperModel.self, from: dict)
@@ -256,7 +256,7 @@ import Testing
         let inner: Inner
     }
 
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
     let dict: [String: Any] = ["inner": ["value": NSNumber(value: 42)]]
     let result = try decoder.decode(Wrapper.self, from: dict)
     #expect(result.inner.value == 42)
@@ -270,7 +270,7 @@ import Testing
         let inner: Inner
     }
 
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
     let dict: [String: Any] = ["inner": ["value": NSNumber(value: 1000)]]
     let result = try decoder.decode(Wrapper.self, from: dict)
     #expect(result.inner.value == 1000)
@@ -284,7 +284,7 @@ import Testing
         let inner: Inner
     }
 
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
     let dict: [String: Any] = ["inner": ["value": NSNumber(value: 100_000)]]
     let result = try decoder.decode(Wrapper.self, from: dict)
     #expect(result.inner.value == 100_000)
@@ -298,7 +298,7 @@ import Testing
         let inner: Inner
     }
 
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
     let dict: [String: Any] = ["inner": ["value": NSNumber(value: 9_223_372_036_854_775_807)]]
     let result = try decoder.decode(Wrapper.self, from: dict)
     #expect(result.inner.value == 9_223_372_036_854_775_807)
@@ -312,7 +312,7 @@ import Testing
         let inner: Inner
     }
 
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
     let dict: [String: Any] = ["inner": ["value": NSNumber(value: 42)]]
     let result = try decoder.decode(Wrapper.self, from: dict)
     #expect(result.inner.value == 42)
@@ -326,7 +326,7 @@ import Testing
         let inner: Inner
     }
 
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
     let dict: [String: Any] = ["inner": ["value": NSNumber(value: 255)]]
     let result = try decoder.decode(Wrapper.self, from: dict)
     #expect(result.inner.value == 255)
@@ -340,7 +340,7 @@ import Testing
         let inner: Inner
     }
 
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
     let dict: [String: Any] = ["inner": ["value": NSNumber(value: 65535)]]
     let result = try decoder.decode(Wrapper.self, from: dict)
     #expect(result.inner.value == 65535)
@@ -354,7 +354,7 @@ import Testing
         let inner: Inner
     }
 
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
     let dict: [String: Any] = ["inner": ["value": NSNumber(value: 4_294_967_295)]]
     let result = try decoder.decode(Wrapper.self, from: dict)
     #expect(result.inner.value == 4_294_967_295)
@@ -368,7 +368,7 @@ import Testing
         let inner: Inner
     }
 
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
     let dict: [String: Any] = ["inner": ["value": NSNumber(value: 18_446_744_073_709_551_615 as UInt64)]]
     let result = try decoder.decode(Wrapper.self, from: dict)
     #expect(result.inner.value == 18_446_744_073_709_551_615)
@@ -382,7 +382,7 @@ import Testing
         let inner: Inner
     }
 
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
     let dict: [String: Any] = ["inner": ["value": NSNumber(value: 3.14159)]]
     let result = try decoder.decode(Wrapper.self, from: dict)
     #expect(result.inner.value == 3.14159)
@@ -396,7 +396,7 @@ import Testing
         let inner: Inner
     }
 
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
     let dict: [String: Any] = ["inner": ["value": NSNumber(value: Float(2.71828))]]
     let result = try decoder.decode(Wrapper.self, from: dict)
     #expect(abs(result.inner.value - 2.71828) < 0.0001)
@@ -410,7 +410,7 @@ import Testing
         let inner: Inner
     }
 
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
     let dict: [String: Any] = ["inner": ["value": NSNumber(value: true)]]
     let result = try decoder.decode(Wrapper.self, from: dict)
     #expect(result.inner.value == true)
@@ -424,7 +424,7 @@ import Testing
         let inner: Inner
     }
 
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
     let dict: [String: Any] = ["inner": ["value": NSNumber(value: 123)]]
     let result = try decoder.decode(Wrapper.self, from: dict)
     #expect(result.inner.value == 123)
@@ -438,7 +438,7 @@ import Testing
         let inner: Inner
     }
 
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
     #expect(throws: DecodingError.self) {
         _ = try decoder.decode(Wrapper.self, from: ["inner": ["value": NSNull()]])
     }
@@ -462,7 +462,7 @@ import Testing
         let inner: Inner
     }
 
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
     let base64String = "SGVsbG8gV29ybGQ="
     let dict: [String: Any] = ["inner": base64String]
     let result = try decoder.decode(Wrapper.self, from: dict)
@@ -487,7 +487,7 @@ import Testing
         let inner: Inner
     }
 
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
     let dict: [String: Any] = ["inner": "https://example.com"]
     let result = try decoder.decode(Wrapper.self, from: dict)
     #expect(result.inner.url == URL(string: "https://example.com"))
@@ -501,7 +501,7 @@ import Testing
         let inner: Inner
     }
 
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
     let testData = Data([1, 2, 3, 4, 5])
     let dict: [String: Any] = ["inner": ["data": testData]]
     let result = try decoder.decode(Wrapper.self, from: dict)
@@ -524,7 +524,7 @@ import Testing
         }
     }
 
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
     let dict: [String: Any] = ["value": NSNumber(value: 42)]
 
     let result = try decoder.decode(TestModel.self, from: dict)
@@ -545,7 +545,7 @@ import Testing
         }
     }
 
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
     let dict: [String: Any] = ["value": NSNumber(value: 3.14)]
 
     let result = try decoder.decode(TestModel.self, from: dict)
@@ -566,7 +566,7 @@ import Testing
         }
     }
 
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
     let dict: [String: Any] = ["value": NSNumber(value: Float(2.5))]
 
     let result = try decoder.decode(TestModel.self, from: dict)
@@ -587,7 +587,7 @@ import Testing
         }
     }
 
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
     let dict: [String: Any] = ["value": NSNumber(value: true)]
 
     let result = try decoder.decode(TestModel.self, from: dict)
@@ -612,7 +612,7 @@ import Testing
         }
     }
 
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
     // Create NSNumber from Double - cannot directly cast to Int
     let dict: [String: Any] = ["value": NSNumber(value: 42.0)]
     let result = try decoder.decode(Wrapper.self, from: dict)
@@ -633,7 +633,7 @@ import Testing
         }
     }
 
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
     // Use Double NSNumber to force conversion path
     let dict: [String: Any] = ["value": NSNumber(value: 100.0)]
     let result = try decoder.decode(Wrapper.self, from: dict)
@@ -654,7 +654,7 @@ import Testing
         }
     }
 
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
     // Use Double NSNumber to force conversion path
     let dict: [String: Any] = ["value": NSNumber(value: 1000.0)]
     let result = try decoder.decode(Wrapper.self, from: dict)
@@ -675,7 +675,7 @@ import Testing
         }
     }
 
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
     // Use Double NSNumber to force conversion path
     let dict: [String: Any] = ["value": NSNumber(value: 100_000.0)]
     let result = try decoder.decode(Wrapper.self, from: dict)
@@ -696,7 +696,7 @@ import Testing
         }
     }
 
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
     // Use Double NSNumber to force conversion path
     let dict: [String: Any] = ["value": NSNumber(value: 9_999_999_999.0)]
     let result = try decoder.decode(Wrapper.self, from: dict)
@@ -717,7 +717,7 @@ import Testing
         }
     }
 
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
     // Use Double NSNumber to force conversion path
     let dict: [String: Any] = ["value": NSNumber(value: 42.0)]
     let result = try decoder.decode(Wrapper.self, from: dict)
@@ -738,7 +738,7 @@ import Testing
         }
     }
 
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
     // Use Double NSNumber to force conversion path
     let dict: [String: Any] = ["value": NSNumber(value: 200.0)]
     let result = try decoder.decode(Wrapper.self, from: dict)
@@ -759,7 +759,7 @@ import Testing
         }
     }
 
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
     // Use Double NSNumber to force conversion path
     let dict: [String: Any] = ["value": NSNumber(value: 50000.0)]
     let result = try decoder.decode(Wrapper.self, from: dict)
@@ -780,7 +780,7 @@ import Testing
         }
     }
 
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
     // Use Double NSNumber to force conversion path
     let dict: [String: Any] = ["value": NSNumber(value: 3_000_000_000.0)]
     let result = try decoder.decode(Wrapper.self, from: dict)
@@ -801,7 +801,7 @@ import Testing
         }
     }
 
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
     // Use Double NSNumber to force conversion path
     let dict: [String: Any] = ["value": NSNumber(value: 15_000_000_000.0)]
     let result = try decoder.decode(Wrapper.self, from: dict)
@@ -822,7 +822,7 @@ import Testing
         }
     }
 
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
     // Use Int NSNumber to force conversion path
     let dict: [String: Any] = ["value": NSNumber(value: 3)]
     let result = try decoder.decode(Wrapper.self, from: dict)
@@ -843,7 +843,7 @@ import Testing
         }
     }
 
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
     // Use Int NSNumber to force conversion path
     let dict: [String: Any] = ["value": NSNumber(value: 3)]
     let result = try decoder.decode(Wrapper.self, from: dict)
@@ -864,7 +864,7 @@ import Testing
         }
     }
 
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
     // Use Int NSNumber to force conversion path (1 -> true)
     let dict: [String: Any] = ["value": NSNumber(value: 1.0)]
     let result = try decoder.decode(Wrapper.self, from: dict)
@@ -886,7 +886,7 @@ import Testing
         }
     }
 
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
     let testData = Data([1, 2, 3, 4, 5])
     let dict: [String: Any] = ["value": testData]
     let result = try decoder.decode(Wrapper.self, from: dict)
@@ -912,7 +912,7 @@ import Testing
         }
     }
 
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
     // Create an NSNumber from Double - won't directly cast to Int (per bridging test)
     let nsNumber = NSNumber(value: 42.9 as Double)
     let dict: [String: Any] = ["value": nsNumber as Any]
@@ -936,7 +936,7 @@ import Testing
         }
     }
 
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
     let nsNumber = NSNumber(value: 2.5 as Double)
     let dict: [String: Any] = ["value": nsNumber as Any]
 
@@ -959,7 +959,7 @@ import Testing
         }
     }
 
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
     let nsNumber = NSNumber(value: 1 as Int)
     let dict: [String: Any] = ["value": nsNumber as Any]
 
@@ -982,7 +982,7 @@ import Testing
         }
     }
 
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
     let nsNumber = NSNumber(value: 12345 as Int64)
     let dict: [String: Any] = ["value": nsNumber as Any]
 
@@ -1005,7 +1005,7 @@ import Testing
         }
     }
 
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
     let nsNumber = NSNumber(value: 3.14159 as Double)
     let dict: [String: Any] = ["value": nsNumber as Any]
 
@@ -1028,7 +1028,7 @@ import Testing
         }
     }
 
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
     let nsNumber = NSNumber(value: 5 as UInt)
     let dict: [String: Any] = ["value": nsNumber as Any]
 
@@ -1053,7 +1053,7 @@ import Testing
         let inner: Inner
     }
 
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
     // Pass a direct String to hit the direct cast path
     let dict: [String: Any] = ["inner": "direct string value"]
 
@@ -1077,7 +1077,7 @@ import Testing
         let inner: Inner
     }
 
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
     // Use a String value
     let dict: [String: Any] = ["inner": "string value"]
 
@@ -1111,7 +1111,7 @@ import Testing
         }
     }
 
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
     let dict: [String: Any] = ["name": "Test"]
 
     let result = try decoder.decode(TestModel.self, from: dict)

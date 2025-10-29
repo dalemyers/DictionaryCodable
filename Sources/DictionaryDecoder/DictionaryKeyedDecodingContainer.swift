@@ -10,7 +10,7 @@ import Foundation
 // MARK: - Keyed Container
 
 struct DictionaryKeyedDecodingContainer<K: CodingKey>: KeyedDecodingContainerProtocol {
-    let decoder: _DictionaryCoder
+    let decoder: _DictionaryDecoder
     let storage: [String: Any]
 
     var codingPath: [CodingKey] { decoder.codingPath }
@@ -37,7 +37,7 @@ struct DictionaryKeyedDecodingContainer<K: CodingKey>: KeyedDecodingContainerPro
                 )
             )
         }
-        let nestedDecoder = _DictionaryCoder(
+        let nestedDecoder = _DictionaryDecoder(
             storage: dict,
             codingPath: codingPath + [key],
             userInfo: decoder.userInfo
@@ -69,7 +69,7 @@ struct DictionaryKeyedDecodingContainer<K: CodingKey>: KeyedDecodingContainerPro
             )
         }
         return DictionaryUnkeyedDecodingContainer(
-            decoder: _DictionaryCoder(
+            decoder: _DictionaryDecoder(
                 storage: array,
                 codingPath: codingPath + [key],
                 userInfo: decoder.userInfo
@@ -79,7 +79,7 @@ struct DictionaryKeyedDecodingContainer<K: CodingKey>: KeyedDecodingContainerPro
     }
 
     func superDecoder() throws -> Decoder {
-        _DictionaryCoder(
+        _DictionaryDecoder(
             storage: storage,
             codingPath: codingPath,
             userInfo: decoder.userInfo
@@ -88,7 +88,7 @@ struct DictionaryKeyedDecodingContainer<K: CodingKey>: KeyedDecodingContainerPro
 
     func superDecoder(forKey key: K) throws -> Decoder {
         let value = storage[key.stringValue] ?? [:]
-        return _DictionaryCoder(
+        return _DictionaryDecoder(
             storage: value,
             codingPath: codingPath + [key],
             userInfo: decoder.userInfo
@@ -116,7 +116,7 @@ struct DictionaryKeyedDecodingContainer<K: CodingKey>: KeyedDecodingContainerPro
 
         // Handle nested dictionary
         if let dict = value as? [String: Any] {
-            let nestedDecoder = _DictionaryCoder(
+            let nestedDecoder = _DictionaryDecoder(
                 storage: dict,
                 codingPath: codingPath + [key],
                 userInfo: decoder.userInfo
@@ -126,7 +126,7 @@ struct DictionaryKeyedDecodingContainer<K: CodingKey>: KeyedDecodingContainerPro
 
         // Handle array
         if let arr = value as? [Any] {
-            let nestedDecoder = _DictionaryCoder(
+            let nestedDecoder = _DictionaryDecoder(
                 storage: arr,
                 codingPath: codingPath + [key],
                 userInfo: decoder.userInfo
@@ -152,7 +152,7 @@ struct DictionaryKeyedDecodingContainer<K: CodingKey>: KeyedDecodingContainerPro
         }
 
         // Fallback to single value decode
-        let singleDecoder = _DictionaryCoder(storage: value, codingPath: codingPath + [key], userInfo: decoder.userInfo)
+        let singleDecoder = _DictionaryDecoder(storage: value, codingPath: codingPath + [key], userInfo: decoder.userInfo)
         return try T(from: singleDecoder)
     }
 }

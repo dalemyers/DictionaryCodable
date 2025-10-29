@@ -34,7 +34,7 @@ import Testing
         }
     }
 
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
     let dict: [String: Any] = [
         "key1": "value1",
         "key2": "value2",
@@ -65,7 +65,7 @@ import Testing
         }
     }
 
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
     let dict: [String: Any] = ["existing": "value"]
 
     let result = try decoder.decode(TestModel.self, from: dict)
@@ -93,7 +93,7 @@ import Testing
         }
     }
 
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
     let dict: [String: Any] = [
         "null1": NSNull(),
         "value": "something",
@@ -129,7 +129,7 @@ import Testing
         }
     }
 
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
     let dict: [String: Any] = [
         "nested": ["value": "test"],
     ]
@@ -158,7 +158,7 @@ import Testing
         }
     }
 
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
     let dict: [String: Any] = [
         "array": ["a", "b", "c"],
     ]
@@ -190,7 +190,7 @@ import Testing
         }
     }
 
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
     let dict: [String: Any] = [
         "name": "Test",
         "extra1": "value1",
@@ -222,7 +222,7 @@ import Testing
         }
     }
 
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
     let dict: [String: Any] = [
         "name": "Test",
         "metadata": [
@@ -261,7 +261,7 @@ import Testing
         }
     }
 
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
     let dict: [String: Any] = ["name": "Test"]
 
     let result = try decoder.decode(TestModel.self, from: dict)
@@ -276,7 +276,7 @@ import Testing
         let items: [String]
     }
 
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
     let dict: [String: Any] = ["items": ["a", "b", "c"]]
 
     let result = try decoder.decode(ArrayWrapperModel.self, from: dict)
@@ -288,7 +288,7 @@ import Testing
         let items: [Int]
     }
 
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
     let dict: [String: Any] = ["items": [1, 2, 3, 4, 5]]
 
     let result = try decoder.decode(CountModel.self, from: dict)
@@ -300,7 +300,7 @@ import Testing
         let values: [String?]
     }
 
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
     let dict: [String: Any] = [
         "values": ["first", NSNull(), "third"],
     ]
@@ -323,7 +323,7 @@ import Testing
         let items: [SimpleModel]
     }
 
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
     let dict: [String: Any] = [
         "items": [
             ["name": "Alice", "age": 30, "isActive": true],
@@ -342,7 +342,7 @@ import Testing
         let matrix: [[Int]]
     }
 
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
     let dict: [String: Any] = [
         "matrix": [
             [1, 2, 3],
@@ -360,7 +360,7 @@ import Testing
         let items: [String]
     }
 
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
     let dict: [String: Any] = ["items": ["a", "b", "c"]]
 
     let result = try decoder.decode(TestModel.self, from: dict)
@@ -372,7 +372,7 @@ import Testing
         let items: [String?]
     }
 
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
     let dict: [String: Any] = ["items": ["value", NSNull()]]
 
     let result = try decoder.decode(TestModel.self, from: dict)
@@ -386,7 +386,7 @@ import Testing
         let items: [Int]
     }
 
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
     let dict: [String: Any] = ["items": [1, 2, 3]]
 
     let result = try decoder.decode(TestModel.self, from: dict)
@@ -400,7 +400,7 @@ import Testing
         let value: String?
     }
 
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
     let dict: [String: Any] = ["value": NSNull()]
 
     let result = try decoder.decode(TestModel.self, from: dict)
@@ -435,7 +435,7 @@ import Testing
         }
     }
 
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
     let dict: [String: Any] = ["items": ["a", "b", "c"]]
 
     let result = try decoder.decode(TestModel.self, from: dict)
@@ -477,7 +477,7 @@ import Testing
         }
     }
 
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
     let dict: [String: Any] = [
         "items": [
             ["name": "Alice"],
@@ -511,7 +511,7 @@ import Testing
         }
     }
 
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
     let dict: [String: Any] = ["items": ["test"]]
 
     #expect(throws: DecodingError.self) {
@@ -538,7 +538,7 @@ import Testing
         }
     }
 
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
     let dict: [String: Any] = ["items": ["not a dictionary"]]
 
     #expect(throws: DecodingError.self) {
@@ -575,7 +575,7 @@ import Testing
         }
     }
 
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
     let dict: [String: Any] = [
         "matrix": [
             [1, 2, 3],
@@ -605,7 +605,7 @@ import Testing
         }
     }
 
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
     let dict: [String: Any] = ["items": ["test"]]
 
     #expect(throws: DecodingError.self) {
@@ -628,7 +628,7 @@ import Testing
         }
     }
 
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
     let dict: [String: Any] = ["items": ["not an array"]]
 
     #expect(throws: DecodingError.self) {
@@ -658,7 +658,7 @@ import Testing
         }
     }
 
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
     let dict: [String: Any] = ["items": ["test"]]
 
     let result = try decoder.decode(TestModel.self, from: dict)
@@ -681,7 +681,7 @@ import Testing
         }
     }
 
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
     let dict: [String: Any] = ["items": ["test"]]
 
     #expect(throws: DecodingError.self) {
@@ -714,7 +714,7 @@ import Testing
         }
     }
 
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
     let dict: [String: Any] = ["items": [NSNull()]]
 
     let result = try decoder.decode(TestModel.self, from: dict)
@@ -744,7 +744,7 @@ import Testing
         }
     }
 
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
     let dict: [String: Any] = ["items": ["test"]]
 
     let result = try decoder.decode(TestModel.self, from: dict)
@@ -770,7 +770,7 @@ import Testing
         }
     }
 
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
     let dict: [String: Any] = ["items": ["test"]]
 
     let result = try decoder.decode(TestModel.self, from: dict)
@@ -793,7 +793,7 @@ import Testing
         }
     }
 
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
     let dict: [String: Any] = ["items": ["test"]]
 
     #expect(throws: DecodingError.self) {
@@ -818,7 +818,7 @@ import Testing
         }
     }
 
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
     // Use a direct String, not NSString or any other type
     let dict: [String: Any] = ["value": "direct match"]
 
@@ -846,7 +846,7 @@ import Testing
         }
     }
 
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
     let dict: [String: Any] = ["value": "something"]
 
     let result = try decoder.decode(TestModel.self, from: dict)

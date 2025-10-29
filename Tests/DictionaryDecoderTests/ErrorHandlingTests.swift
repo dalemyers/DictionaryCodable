@@ -11,7 +11,7 @@ import Testing
         let isActive: Bool
     }
 
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
     let dict: [String: Any] = [
         "name": "Test",
         "age": 30,
@@ -30,7 +30,7 @@ import Testing
         let isActive: Bool
     }
 
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
     let dict: [String: Any] = [
         "name": "Test",
         "age": "not a number", // Wrong type
@@ -54,13 +54,13 @@ import Testing
     }
 
     #expect(throws: DecodingError.self) {
-        let internalDecoder = _DictionaryCoder(storage: [1, 2, 3])
+        let internalDecoder = _DictionaryDecoder(storage: [1, 2, 3])
         _ = try internalDecoder.container(keyedBy: TestModel.CodingKeys.self)
     }
 }
 
 @Test func invalidContainerTypeForUnkeyed() throws {
-    let decoder = _DictionaryCoder(storage: ["key": "value"])
+    let decoder = _DictionaryDecoder(storage: ["key": "value"])
 
     #expect(throws: DecodingError.self) {
         _ = try decoder.unkeyedContainer()
@@ -83,7 +83,7 @@ import Testing
         }
     }
 
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
     let dict: [String: Any] = ["other": "value"]
 
     #expect(throws: DecodingError.self) {
@@ -107,7 +107,7 @@ import Testing
         }
     }
 
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
     let dict: [String: Any] = ["wrongType": "not a dict"]
 
     #expect(throws: DecodingError.self) {
@@ -127,7 +127,7 @@ import Testing
         }
     }
 
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
     let dict: [String: Any] = ["other": "value"]
 
     #expect(throws: DecodingError.self) {
@@ -147,7 +147,7 @@ import Testing
         }
     }
 
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
     let dict: [String: Any] = ["wrongType": "not an array"]
 
     #expect(throws: DecodingError.self) {
@@ -172,7 +172,7 @@ import Testing
         }
     }
 
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
     let dict: [String: Any] = ["test": [1, 2, 3]]
 
     #expect(throws: DecodingError.self) {
@@ -193,7 +193,7 @@ import Testing
         }
     }
 
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
     let dict: [String: Any] = ["test": [1, 2, 3]]
 
     #expect(throws: DecodingError.self) {
@@ -214,7 +214,7 @@ import Testing
         }
     }
 
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
     let dict: [String: Any] = ["test": [1, 2, 3]]
 
     #expect(throws: DecodingError.self) {
@@ -235,7 +235,7 @@ import Testing
         }
     }
 
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
     let dict: [String: Any] = ["test": [1, 2, 3]]
 
     #expect(throws: DecodingError.self) {
@@ -255,7 +255,7 @@ import Testing
         }
     }
 
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
     let dict: [String: Any] = ["test": ["not a dict"]]
 
     #expect(throws: DecodingError.self) {
@@ -271,7 +271,7 @@ import Testing
         }
     }
 
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
     let dict: [String: Any] = ["test": ["not an array"]]
 
     #expect(throws: DecodingError.self) {
@@ -289,7 +289,7 @@ import Testing
         }
     }
 
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
     let dict: [String: Any] = ["value": "cannot convert to int"]
 
     #expect(throws: DecodingError.self) {
@@ -307,7 +307,7 @@ import Testing
         }
     }
 
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
     let dict: [String: Any] = ["value": NSNull()]
 
     #expect(throws: DecodingError.self) {
@@ -327,7 +327,7 @@ import Testing
         let name: String
     }
 
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
     let dict: [String: Any] = [
         "simple": [
             "name": "Test",
@@ -355,7 +355,7 @@ import Testing
         let value: Bool
     }
 
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
     let dict: [String: Any] = ["value": "invalid"]
 
     #expect(throws: DecodingError.self) {
@@ -368,7 +368,7 @@ import Testing
         let url: URL
     }
 
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
     // Invalid URL string (has spaces which are not valid in a URL without encoding)
     let dict: [String: Any] = ["url": "not a valid url with spaces"]
 
@@ -382,7 +382,7 @@ import Testing
         let data: Data
     }
 
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
     // Invalid base64 string
     let dict: [String: Any] = ["data": "not valid base64!!!"]
 

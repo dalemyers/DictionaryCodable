@@ -8,7 +8,7 @@
 import Foundation
 
 struct DictionarySingleValueDecodingContainer: SingleValueDecodingContainer {
-    let decoder: _DictionaryCoder
+    let decoder: _DictionaryDecoder
     let storage: Any
     var codingPath: [CodingKey] { decoder.codingPath }
 

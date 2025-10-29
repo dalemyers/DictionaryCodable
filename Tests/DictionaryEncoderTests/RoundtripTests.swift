@@ -20,7 +20,7 @@ final class RoundtripTests: XCTestCase {
         let encoder = DictionaryEncoder()
         let dict = try encoder.encode(original)
 
-        let decoder = DictionaryCoder()
+        let decoder = DictionaryDecoder()
         let decoded = try decoder.decode(Person.self, from: dict)
 
         XCTAssertEqual(original, decoded)
@@ -64,7 +64,7 @@ final class RoundtripTests: XCTestCase {
         let encoder = DictionaryEncoder()
         let dict = try encoder.encode(original)
 
-        let decoder = DictionaryCoder()
+        let decoder = DictionaryDecoder()
         let decoded = try decoder.decode(AllTypes.self, from: dict)
 
         XCTAssertEqual(original, decoded)
@@ -82,7 +82,7 @@ final class RoundtripTests: XCTestCase {
         let encoder = DictionaryEncoder()
         let dict = try encoder.encode(original)
 
-        let decoder = DictionaryCoder()
+        let decoder = DictionaryDecoder()
         let decoded = try decoder.decode(OptionalFields.self, from: dict)
 
         XCTAssertEqual(original, decoded)
@@ -107,7 +107,7 @@ final class RoundtripTests: XCTestCase {
         let encoder = DictionaryEncoder()
         let dict = try encoder.encode(original)
 
-        let decoder = DictionaryCoder()
+        let decoder = DictionaryDecoder()
         let decoded = try decoder.decode(Person.self, from: dict)
 
         XCTAssertEqual(original, decoded)
@@ -131,7 +131,7 @@ final class RoundtripTests: XCTestCase {
         let encoder = DictionaryEncoder()
         let dict = try encoder.encode(original)
 
-        let decoder = DictionaryCoder()
+        let decoder = DictionaryDecoder()
         let decoded = try decoder.decode(Level1.self, from: dict)
 
         XCTAssertEqual(original, decoded)
@@ -147,7 +147,7 @@ final class RoundtripTests: XCTestCase {
         let encoder = DictionaryEncoder()
         let dict = try encoder.encode(original)
 
-        let decoder = DictionaryCoder()
+        let decoder = DictionaryDecoder()
         let decoded = try decoder.decode(Container.self, from: dict)
 
         XCTAssertEqual(original, decoded)
@@ -171,7 +171,7 @@ final class RoundtripTests: XCTestCase {
         let encoder = DictionaryEncoder()
         let dict = try encoder.encode(original)
 
-        let decoder = DictionaryCoder()
+        let decoder = DictionaryDecoder()
         let decoded = try decoder.decode(Container.self, from: dict)
 
         XCTAssertEqual(original, decoded)
@@ -187,7 +187,7 @@ final class RoundtripTests: XCTestCase {
         let encoder = DictionaryEncoder()
         let dict = try encoder.encode(original)
 
-        let decoder = DictionaryCoder()
+        let decoder = DictionaryDecoder()
         let decoded = try decoder.decode(Container.self, from: dict)
 
         XCTAssertEqual(original, decoded)
@@ -208,7 +208,7 @@ final class RoundtripTests: XCTestCase {
         let encoder = DictionaryEncoder()
         let dict = try encoder.encode(original)
 
-        let decoder = DictionaryCoder()
+        let decoder = DictionaryDecoder()
         let decoded = try decoder.decode(Record.self, from: dict)
 
         XCTAssertEqual(original, decoded)
@@ -230,7 +230,7 @@ final class RoundtripTests: XCTestCase {
         let encoder = DictionaryEncoder()
         let dict = try encoder.encode(original)
 
-        let decoder = DictionaryCoder()
+        let decoder = DictionaryDecoder()
         let decoded = try decoder.decode(Task.self, from: dict)
 
         XCTAssertEqual(original, decoded)
@@ -246,7 +246,7 @@ final class RoundtripTests: XCTestCase {
         let encoder = DictionaryEncoder()
         let dict = try encoder.encode(original)
 
-        let decoder = DictionaryCoder()
+        let decoder = DictionaryDecoder()
         let decoded = try decoder.decode(Container.self, from: dict)
 
         XCTAssertEqual(original, decoded)
@@ -273,7 +273,7 @@ final class RoundtripTests: XCTestCase {
         let encoder = DictionaryEncoder()
         let dict = try encoder.encode(original)
 
-        let decoder = DictionaryCoder()
+        let decoder = DictionaryDecoder()
         let decoded = try decoder.decode(Outer.self, from: dict)
 
         XCTAssertEqual(original, decoded)
@@ -324,7 +324,7 @@ final class RoundtripTests: XCTestCase {
         let encoder = DictionaryEncoder()
         let dict = try encoder.encode(original)
 
-        let decoder = DictionaryCoder()
+        let decoder = DictionaryDecoder()
         let decoded = try decoder.decode(Person.self, from: dict)
 
         XCTAssertEqual(original, decoded)

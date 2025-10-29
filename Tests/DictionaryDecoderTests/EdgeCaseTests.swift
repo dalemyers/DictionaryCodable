@@ -7,7 +7,7 @@ import Testing
 @Test func emptyDictionary() throws {
     struct EmptyModel: Codable {}
 
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
     let dict: [String: Any] = [:]
 
     _ = try decoder.decode(EmptyModel.self, from: dict)
@@ -19,7 +19,7 @@ import Testing
         let numbers: [Int]
     }
 
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
     let dict: [String: Any] = [
         "items": [],
         "numbers": [],
@@ -45,7 +45,7 @@ import Testing
         let array: [Int]
     }
 
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
     let dict: [String: Any] = [
         "text": "Hello",
         "number": 42,
@@ -78,7 +78,7 @@ import Testing
         }
     }
 
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
     decoder.userInfo[CodingUserInfoKey(rawValue: "customKey")!] = "customValue"
 
     let dict: [String: Any] = [:]

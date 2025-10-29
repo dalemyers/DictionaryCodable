@@ -64,7 +64,7 @@ let dictionary: [String: Any] = [
     "email": "jane@example.com"
 ]
 
-let decoder = DictionaryCoder()
+let decoder = DictionaryDecoder()
 let person = try decoder.decode(Person.self, from: dictionary)
 print(person.name) // "Jane Smith"
 ```
@@ -113,7 +113,7 @@ let companyDict: [String: Any] = [
     ]
 ]
 
-let decoder = DictionaryCoder()
+let decoder = DictionaryDecoder()
 let company = try decoder.decode(Company.self, from: companyDict)
 print(company.employees.count) // 2
 ```
@@ -136,7 +136,7 @@ let productDict: [String: Any] = [
     // description and price are missing
 ]
 
-let decoder = DictionaryCoder()
+let decoder = DictionaryDecoder()
 let product = try decoder.decode(Product.self, from: productDict)
 print(product.description) // nil
 print(product.price) // nil
@@ -157,7 +157,7 @@ let dict: [String: Any] = [
     "value": 100        // Int → Double (converts)
 ]
 
-let decoder = DictionaryCoder()
+let decoder = DictionaryDecoder()
 let data = try decoder.decode(Data.self, from: dict)
 print(data.count) // 42
 print(data.value) // 100.0
@@ -180,7 +180,7 @@ let todoDict: [String: Any] = [
     "tags": ["groceries", "weekly"]
 ]
 
-let decoder = DictionaryCoder()
+let decoder = DictionaryDecoder()
 let todo = try decoder.decode(TodoList.self, from: todoDict)
 print(todo.items) // ["Milk", "Bread", "Eggs"]
 ```
@@ -208,7 +208,7 @@ let userDict: [String: Any] = [
     "active": true
 ]
 
-let decoder = DictionaryCoder()
+let decoder = DictionaryDecoder()
 let user = try decoder.decode(User.self, from: userDict)
 print(user.emailAddress) // "john@example.com"
 ```
@@ -223,7 +223,7 @@ let original = Person(name: "Alice", age: 30, email: "alice@example.com")
 let encoder = DictionaryEncoder()
 let dictionary = try encoder.encode(original)
 
-let decoder = DictionaryCoder()
+let decoder = DictionaryDecoder()
 let decoded = try decoder.decode(Person.self, from: dictionary)
 
 print(decoded.name == original.name) // true
@@ -245,7 +245,7 @@ let invalidDict: [String: Any] = [
 ]
 
 do {
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
     let data = try decoder.decode(StrictData.self, from: invalidDict)
 } catch DecodingError.keyNotFound(let key, let context) {
     print("Missing key: \(key)")
@@ -262,7 +262,7 @@ Pass custom information to your encoding/decoding logic:
 ```swift
 let customKey = CodingUserInfoKey(rawValue: "customBehavior")!
 
-let decoder = DictionaryCoder()
+let decoder = DictionaryDecoder()
 decoder.userInfo[customKey] = "special"
 
 // Use in your custom init(from:) implementation

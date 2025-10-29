@@ -11,7 +11,7 @@ import Testing
         let isActive: Bool
     }
 
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
     let dict: [String: Any] = [
         "name": "John Doe",
         "age": 30,
@@ -31,7 +31,7 @@ import Testing
         let optionalInt: Int?
     }
 
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
 
     // Test with all values present
     let dict1: [String: Any] = [
@@ -77,7 +77,7 @@ import Testing
         let name: String
     }
 
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
     let dict: [String: Any] = [
         "name": "Parent",
         "simple": [
@@ -100,7 +100,7 @@ import Testing
         let numbers: [Int]
     }
 
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
     let dict: [String: Any] = [
         "items": ["apple", "banana", "cherry"],
         "numbers": [1, 2, 3, 4, 5],
@@ -122,7 +122,7 @@ import Testing
         let people: [SimpleModel]
     }
 
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
     let dict: [String: Any] = [
         "people": [
             ["name": "Alice", "age": 30, "isActive": true],
@@ -143,7 +143,7 @@ import Testing
         let value: String
     }
 
-    let decoder = DictionaryCoder()
+    let decoder = DictionaryDecoder()
     let dict: [String: Any] = ["value": "Direct Match"]
 
     let result = try decoder.decode(TestModel.self, from: dict)

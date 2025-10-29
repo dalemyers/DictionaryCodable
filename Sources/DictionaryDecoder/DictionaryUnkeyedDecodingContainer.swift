@@ -8,7 +8,7 @@
 import Foundation
 
 struct DictionaryUnkeyedDecodingContainer: UnkeyedDecodingContainer {
-    let decoder: _DictionaryCoder
+    let decoder: _DictionaryDecoder
     let storage: [Any]
     var codingPath: [CodingKey] { decoder.codingPath }
 
@@ -38,7 +38,7 @@ struct DictionaryUnkeyedDecodingContainer: UnkeyedDecodingContainer {
                 )
             )
         }
-        let nestedDecoder = _DictionaryCoder(
+        let nestedDecoder = _DictionaryDecoder(
             storage: dict,
             codingPath: codingPath,
             userInfo: decoder.userInfo
@@ -71,7 +71,7 @@ struct DictionaryUnkeyedDecodingContainer: UnkeyedDecodingContainer {
             )
         }
         return DictionaryUnkeyedDecodingContainer(
-            decoder: _DictionaryCoder(
+            decoder: _DictionaryDecoder(
                 storage: array,
                 codingPath: codingPath,
                 userInfo: decoder.userInfo
@@ -91,7 +91,7 @@ struct DictionaryUnkeyedDecodingContainer: UnkeyedDecodingContainer {
         }
         let value = storage[currentIndex]
         currentIndex += 1
-        return _DictionaryCoder(
+        return _DictionaryDecoder(
             storage: value,
             codingPath: codingPath,
             userInfo: decoder.userInfo
@@ -118,7 +118,7 @@ struct DictionaryUnkeyedDecodingContainer: UnkeyedDecodingContainer {
         currentIndex += 1
 
         if let val = value as? T { return val }
-        let nestedDecoder = _DictionaryCoder(storage: value, codingPath: codingPath, userInfo: decoder.userInfo)
+        let nestedDecoder = _DictionaryDecoder(storage: value, codingPath: codingPath, userInfo: decoder.userInfo)
         return try T(from: nestedDecoder)
     }
 }

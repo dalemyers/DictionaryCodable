@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class _DictionaryCoder: Decoder {
+final class _DictionaryDecoder: Decoder {
     var storage: Any
     var codingPath: [CodingKey]
     var userInfo: [CodingUserInfoKey: Any]
