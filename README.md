@@ -4,7 +4,6 @@
 [![Platform](https://img.shields.io/badge/Platforms-iOS%20|%20macOS%20|%20tvOS%20|%20watchOS%20|%20visionOS%20|%20Linux-lightgrey.svg)](https://swift.org)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![CI](https://github.com/dalemyers/DictionaryCoder/workflows/Pull%20Request%20CI/badge.svg)](https://github.com/dalemyers/DictionaryCoder/actions)
-[![codecov](https://codecov.io/gh/dalemyers/DictionaryCoder/branch/main/graph/badge.svg)](https://codecov.io/gh/dalemyers/DictionaryCoder)
 
 A lightweight, high-performance Swift package for encoding and decoding `Codable` types directly to and from dictionaries (`[String: Any]`). Perfect for working with untyped dictionaries from JSON APIs, user defaults, or any source that provides data as dictionaries.
 
@@ -283,168 +282,11 @@ decoder.userInfo[customKey] = "special"
 // Use in your custom init(from:) implementation
 ```
 
-## Requirements
-
-- Swift 6.0.2 or later
-- Xcode 26.0 or later (for iOS/macOS development)
-
-## API Documentation
-
-### DictionaryCoder
-
-The main decoder class for converting dictionaries to `Codable` types.
-
-```swift
-public final class DictionaryCoder {
-    public init()
-    public var userInfo: [CodingUserInfoKey: Any]
-    public func decode<T: Decodable>(_ type: T.Type, from dictionary: [String: Any]) throws -> T
-}
-```
-
-### DictionaryEncoder
-
-The main encoder class for converting `Codable` types to dictionaries.
-
-```swift
-public final class DictionaryEncoder {
-    public init()
-    public var userInfo: [CodingUserInfoKey: Any]
-    public func encode(_ value: some Encodable) throws -> [String: Any]
-}
-```
-
-## Common Use Cases
-
-### Working with API Responses
-
-```swift
-// API returns [String: Any] dictionary
-let apiResponse = networkLayer.fetchUserData()
-
-let decoder = DictionaryCoder()
-let user = try decoder.decode(User.self, from: apiResponse)
-```
-
-### UserDefaults Storage
-
-```swift
-// Save to UserDefaults
-let settings = AppSettings(theme: "dark", notifications: true)
-let encoder = DictionaryEncoder()
-let dict = try encoder.encode(settings)
-UserDefaults.standard.set(dict, forKey: "appSettings")
-
-// Load from UserDefaults
-if let dict = UserDefaults.standard.dictionary(forKey: "appSettings") {
-    let decoder = DictionaryCoder()
-    let settings = try decoder.decode(AppSettings.self, from: dict)
-}
-```
-
-### Firebase/Firestore Integration
-
-```swift
-// Decode Firestore document
-let documentData = document.data() // [String: Any]
-let decoder = DictionaryCoder()
-let post = try decoder.decode(Post.self, from: documentData)
-
-// Encode for Firestore
-let encoder = DictionaryEncoder()
-let data = try encoder.encode(post)
-firestore.collection("posts").document(id).setData(data)
-```
-
-## Performance Characteristics
-
-DictionaryCoder is designed for performance:
-
-- **Zero Copy**: Works directly with dictionaries without intermediate representations
-- **Type Safe**: Compile-time type checking with runtime validation
-- **Memory Efficient**: No JSON serialization overhead
-- **Fast**: Direct value extraction and type conversion
-
 ## Limitations
 
 - Top-level encoded values must be dictionaries (keyed containers), not arrays or single values
 - Currently supports `[String: Any]` dictionaries only
 - Number conversions follow Swift's type coercion rules (may truncate or lose precision)
-
-## Development
-
-### Building the Project
-
-```bash
-swift build
-```
-
-### Running Tests
-
-```bash
-swift test
-```
-
-All tests pass with 100% code coverage for lines, functions, and regions.
-
-### Code Coverage
-
-Generate and view HTML code coverage reports:
-
-```bash
-./generate_coverage_llvm.sh
-```
-
-Open `coverage_html/index.html` in your browser to view the detailed coverage report.
-
-### Code Quality Tools
-
-This project maintains high code quality standards using:
-
-- **SwiftLint**: Enforces Swift style and conventions
-- **SwiftFormat**: Ensures consistent code formatting (Nick Lockwood version)
-
-#### Installation
-
-```bash
-brew install swiftlint swiftformat
-```
-
-#### Running Linters
-
-```bash
-# Check for linting issues
-swiftlint lint
-
-# Check formatting issues (doesn't modify files)
-swiftformat --lint .
-
-# Apply formatting (modifies files)
-swiftformat .
-```
-
-Configuration files:
-- `.swiftlint.yml` - SwiftLint rules and settings
-- `.swiftformat` - SwiftFormat options
-
-### Continuous Integration
-
-GitHub Actions workflows ensure code quality:
-
-#### Pull Request Workflow (`.github/workflows/pr.yml`)
-Runs on every pull request:
-- Lints code with SwiftLint
-- Checks formatting with SwiftFormat
-- Builds the project
-- Runs all tests
-- Generates code coverage reports
-- Uploads coverage to Codecov
-
-#### Release Workflow (`.github/workflows/release.yml`)
-Runs on tagged commits (e.g., `v1.0.0`):
-- Performs all PR checks
-- Creates GitHub releases automatically
-- Publishes release artifacts
 
 ## Contributing
 
@@ -483,19 +325,3 @@ Contributions are welcome! Here's how to contribute:
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## Author
-
-Dale Myers
-
-## Acknowledgments
-
-- Built with Swift 6.0.2
-- Inspired by the Swift `Codable` system
-- Uses the `Encoder` and `Decoder` protocols from Swift's Foundation framework
-
-## Support
-
-- **Issues**: Report bugs or request features via [GitHub Issues](https://github.com/dalemyers/DictionaryCoder/issues)
-- **Discussions**: Ask questions in [GitHub Discussions](https://github.com/dalemyers/DictionaryCoder/discussions)
-- **Pull Requests**: Contributions are welcome!
