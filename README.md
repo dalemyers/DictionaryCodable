@@ -43,20 +43,6 @@ dependencies: [
 
 Or in Xcode, go to **File** → **Add Package Dependencies** and enter the repository URL.
 
-### CocoaPods
-
-Add `DictionaryCoder` to your `Podfile`:
-
-```ruby
-pod 'DictionaryCoder', '~> 1.0'
-```
-
-Then run:
-
-```bash
-pod install
-```
-
 ## Usage
 
 ### Basic Decoding

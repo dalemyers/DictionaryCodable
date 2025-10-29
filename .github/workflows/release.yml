@@ -84,35 +84,3 @@ jobs:
             See commit history for details.
           draft: false
           prerelease: false
-
-  publish-cocoapods:
-    name: Publish to CocoaPods
-    runs-on: macos-latest
-    needs: [lint-and-format, build-and-test]
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Extract version from tag
-        id: get_version
-        run: echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
-
-      - name: Update podspec version
-        run: |
-          sed -i '' "s/^  s\.version[ ]*=.*/  s.version          = '${{ steps.get_version.outputs.VERSION }}'/" DictionaryCoder.podspec
-
-      - name: Show podspec
-        run: |
-          cat DictionaryCoder.podspec
-
-      - name: Install CocoaPods
-        run: gem install cocoapods
-
-      - name: Validate podspec
-        run: pod lib lint --allow-warnings
-
-      - name: Publish to CocoaPods
-        env:
-          COCOAPODS_TRUNK_TOKEN: ${{ secrets.COCOAPODS_TRUNK_TOKEN }}
-        run: |
-          pod trunk push DictionaryCoder.podspec --allow-warnings

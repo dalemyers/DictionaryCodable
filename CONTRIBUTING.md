@@ -130,17 +130,7 @@ Releases are managed by the maintainers. The process:
 2. Update CHANGELOG.md
 3. Create a git tag (e.g., `v1.0.0`)
 4. Push the tag to trigger release workflow
-5. GitHub Actions automatically:
-   - Creates a GitHub release
-   - Publishes to CocoaPods (requires `COCOAPODS_TRUNK_TOKEN` secret)
-
-### CocoaPods Setup
-
-For maintainers publishing to CocoaPods, you need to set up the `COCOAPODS_TRUNK_TOKEN` secret in the GitHub repository:
-
-1. Register with CocoaPods trunk: `pod trunk register email@example.com 'Your Name'`
-2. Get your session token from `~/.netrc`
-3. Add it as a repository secret named `COCOAPODS_TRUNK_TOKEN`
+5. GitHub Actions automatically creates a GitHub release
 
 ## Questions?
 
